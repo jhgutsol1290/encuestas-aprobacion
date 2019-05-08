@@ -1,0 +1,36 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Encuestas de aprobación</title>
+    <%- include("partials/header")%>
+    <link href= "/assets/css/cover.css" rel="stylesheet">
+</head>
+
+<div class="container p-4 mt-5 animated bounceInDown">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/upload" method="POST">
+                        <!-- <div class="form-group">
+                            <input type="text" name="encuestadora" placeholder="Encuestadora" class="form-control" required>
+                        </div> -->
+                        <div class="form-group">
+                            <input type="text" name="publicado" placeholder="Fecha publicación Ej: Enero 19" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="porcentaje" placeholder="Porcentaje" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="numero" placeholder="Número de encuestadora" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">Subir encuesta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

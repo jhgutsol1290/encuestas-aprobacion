@@ -1,0 +1,161 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Encuestas de aprobación</title>
+    <%- include("partials/header")%>
+    <link href= "/assets/css/graphs.css" rel="stylesheet">
+    <!--CDN CHARTJS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+
+<div class="container-fluid mt-5">
+    <div class="mt-5" style="width:75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+</div>
+
+<script>
+
+const data = <%- newData %>
+console.log(data)
+const dataLabels = data.map(el=>el.encuestadora)
+console.log(dataLabels)
+
+const aux = data.map(el=>el.NuevaTabla)
+console.log(aux)
+
+
+ /*Labels*/
+const aux1 = aux[0]
+const aux2 = aux1.map(el=>{
+    return el
+})
+console.log(aux2)
+const aux3 = aux2.map(el=>el.publicado)
+console.log(aux3)
+
+/*Values REFORMA*/
+const values1 = aux2.map(el=>el.porcentaje)
+console.log(values1)
+
+/*Values METRO*/
+const aux4 = aux[1]
+const aux5 = aux4.map(el=>el)
+const values2 = aux5.map(el=>el.porcentaje)
+console.log(values2)
+
+/*Values UNIVERSAL*/
+/*Values METRO*/
+const aux6 = aux[2]
+const aux7 = aux6.map(el=>el)
+const values3 = aux7.map(el=>el.porcentaje)
+console.log(values3)
+
+
+var lineChartData = {
+			labels: aux3,
+			datasets: [{
+				label: dataLabels[0],
+				borderColor: 'red',
+				backgroundColor: 'red',
+				fill: false,
+				data: values1,
+			}, {
+				label: dataLabels[1],
+				borderColor: 'blue',
+				backgroundColor: 'blue',
+				fill: false,
+				data: values2,
+			},{
+				label: dataLabels[2],
+				borderColor: 'green',
+				backgroundColor: 'green',
+				fill: false,
+				data: values3,
+            },
+        ]
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = Chart.Line(ctx, {
+				data: lineChartData,
+				options: {
+					responsive: true,
+					hoverMode: 'index',
+					stacked: false,
+					title: {
+						display: true,
+						text: 'Encuestas de aprobación Presidente Andrés Manuel López Obrador'
+					},
+					scales: {
+						yAxes: [{
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'left',
+                        }],
+					}
+				}
+			});
+		};
+
+		
+
+/* var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: aux3,
+        datasets: [{
+            label: dataLabels[0],
+            borderColor: 'rgb(255, 99, 132)',
+            data: values1
+        },
+        {
+            label: dataLabels[1],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [64,80]
+        },
+        {
+            label: dataLabels[2],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [64,80]
+        },
+    ]
+    },
+
+    // Configuration options go here
+    options: {
+        responsive: true,
+				title: {
+					display: true,
+					text: 'Chart.js Line Chart - Stacked Area'
+				},
+				tooltips: {
+					mode: 'index',
+				},
+				hover: {
+					mode: 'index'
+				},
+				scales: {
+					xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						stacked: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+				}
+    }
+}); */
+</script>
