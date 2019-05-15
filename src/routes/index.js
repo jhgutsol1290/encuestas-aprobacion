@@ -33,6 +33,7 @@ router.get('/upload', (req, res)=>{
     res.render('upload')
 })
 
+
 router.post('/upload', async (req, res)=>{
 
     //const graph = new Graph()
@@ -48,4 +49,18 @@ router.post('/upload', async (req, res)=>{
     await values.save()
     res.redirect('/graphs')
 })
+
+router.get('/encuestadora/upload', (req, res)=>{
+    res.render('uploadEnc')
+})
+
+router.post('/encuestadora/upload', async(req, res)=>{
+    const graph = new Graph()
+    graph.encuestadora = req.body.encuestadora
+    graph.numero = req.body.numero
+
+    await graph.save()
+    res.redirect('/graphs')
+})
+
 module.exports = router

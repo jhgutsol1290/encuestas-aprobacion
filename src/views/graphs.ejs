@@ -31,7 +31,7 @@ const aux1 = aux[0]
 const aux2 = aux1.map(el=>{
     return el
 })
-console.log(aux2)
+console.log("Nuevo: ", aux2)
 const aux3 = aux2.map(el=>el.publicado)
 console.log(aux3)
 
@@ -46,11 +46,15 @@ const values2 = aux5.map(el=>el.porcentaje)
 console.log(values2)
 
 /*Values UNIVERSAL*/
-/*Values METRO*/
+
 const aux6 = aux[2]
 const aux7 = aux6.map(el=>el)
 const values3 = aux7.map(el=>el.porcentaje)
 console.log(values3)
+
+/*Values Milenio*/
+const aux8 = aux[3].map(el=>el.porcentaje)
+console.log("Valores: ", aux8)
 
 
 var lineChartData = {
@@ -73,6 +77,12 @@ var lineChartData = {
 				backgroundColor: 'green',
 				fill: false,
 				data: values3,
+            },{
+				label: dataLabels[3],
+				borderColor: 'yellow',
+				backgroundColor: 'yellow',
+				fill: false,
+				data: aux8,
             },
         ]
 		};
