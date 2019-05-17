@@ -57,7 +57,6 @@ router.get('/encuestadora/upload', (req, res)=>{
 router.post('/encuestadora/upload', async(req, res)=>{
     const graph = new Graph()
     graph.encuestadora = req.body.encuestadora
-    graph.numero = req.body.numero
 
     await graph.save()
     res.redirect('/graphs')
