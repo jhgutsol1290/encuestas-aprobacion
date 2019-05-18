@@ -8,9 +8,15 @@
     <!--CDN CHARTJS-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
-
-<div class="container-fluid mt-5">
-    <div class="mt-5" style="width:90%;">
+<div class="container-fluid pt-5 text-center">
+	<div class="row">
+		<div class="col-12">
+			<h4 class="display-4"></h4>
+		</div>
+	</div>
+</div>
+<div class="container-fluid offset-md-1">
+    <div class="mt-2" style="width:80%;">
         <canvas id="canvas"></canvas>
     </div>
 </div>
@@ -33,20 +39,6 @@ console.log(aux)
 const allLabels = aux[0].map(el=>el.publicado)
 //console.log(allLabels)
 
-//values0 attemps the values of the first dataLabel
-//const values0 = aux[0].map(el=>el.porcentaje)
-//console.log(values0)
-//var values
-
-	//for(i=0;i<aux.length;i++){
-	///values = aux[i]
-	//console.log(values)
-	//}
-
-//const values0 = aux[0].map(el=>el.porcentaje)
-//const values1 = aux[1].map(el=>el.porcentaje)
-//const values2 = aux[2].map(el=>el.porcentaje)
-
 const arreglo = []
 
 for(var b in data){
@@ -62,12 +54,15 @@ const aux1 = arreglo.map((el,i)=>{
 console.log(aux1)
 
 var newArray=[]
+const arrayColors = ['#4592af', '#c82121', '#8f71ff', '#8adfdc', '#feb9c8', '#82acff', '#ebefd0']
+const colors = arrayColors.map(color=>color)
+console.log(colors)
 
 newArray = aux1.map((el,i)=>{
 	return {
 		"label": aux1[i][0],
-		"borderColor": '#4592af',
-		"backgroundColor": '#4592af',
+		"borderColor": arrayColors[i],
+		"backgroundColor": arrayColors[i],
 		"fill": false,
 		"data": aux1[i][1]
 	}
@@ -90,10 +85,6 @@ var lineChartData = {
 					responsive: true,
 					hoverMode: 'index',
 					stacked: false,
-					title: {
-						display: true,
-						text: 'Encuestas de aprobación Presidente Andrés Manuel López Obrador'
-					},
 					scales: {
 						yAxes: [{
 							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
